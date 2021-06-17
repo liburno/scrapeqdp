@@ -1,0 +1,12 @@
+{
+  "name": "qdpscrape",
+  "version": "1.0.0",
+  "description": "scrape qdpnews",
+  "main": "scrape.js",
+  "private": true,
+  "dependencies": {
+    "cheerio": "*",
+    "liburno_lib": "*",
+    "sharp": "*"
+  }
+}
