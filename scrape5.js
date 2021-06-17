@@ -97,7 +97,7 @@ function getlinkedarts($) {
             if (rr) {
                 var ini = a.substr(0, rr.index)
                 if (cats[ini]) {
-                    a = a.replace(/\/\s*$/gim, '') // ** toglie lo / finale, per forma connessa al servizio new.liburno.com
+                    a = a.replace(/\/\s*$/gim, '') // ** toglie lo / finale
                     res.add(a);
                     if (!arts[a]) {
                         arts[a] = 1;
