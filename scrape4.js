@@ -134,13 +134,15 @@ function loadart($, art) {
         }
     })
     var rr = $('.cs-main-content').first();
+    res.reading=rr.find('.cs-meta-reading-time').first().text();
     res.title = rr.find('.cs-entry__title').first().text();
     res.img = rr.find('.post-media img').first().attr("data-src")
     var tm = artexp.exec(art);
     if (tm) {
         res.section = tm[1].replace(/-/g, ' ');
     }
-    var tm = rr.find('.cs-meta-date').first().text().split(',')[1].trim();
+    res.dataoriginale=rr.find('.cs-meta-date').first().text();
+    var tm = res.dataoriginale.split(',')[1].trim();
     var r2 = /(\d{1,2})\s+(\w+)\s+(\d{4})/gim.exec(tm);
     var dt;
     if (r2) {
@@ -157,7 +159,7 @@ function loadart($, art) {
         var x = $(data);
         var tm = x.html();
         var tm2 = x.text();
-        tm=tm.replace(/\(Foto:.*?\)/gim,"").replace(/\#?qdpnews.it/gim,"");
+        //tm=tm.replace(/\(Foto:.*?\)/gim,"").replace(/\#?qdpnews.it/gim,"");
         parsepara(tm, rb);
     });
     res.body = rb;
@@ -176,10 +178,12 @@ async function main() {
     var aa="/comuni/crocetta-del-montello/a-crocetta-del-montello-lo-sport-si-pratica-allaria-aperta-zanella-iniziativa-per-incentivare-lattivita-fisica-e-promuovere-il-territorio/"
     var data=await post.fetchtxt(`${url}${aa}`)
     $= cheerio.load(data);
+    $('script,link,style,noscript,footer').remove();
+    fs.writeFileSync("articolo.html",$.html());
     getlinkedarts($);
     $ = cheerio.load(data);
     var res=loadart($,aa);
-    console.log(res);
+    fs.writeFileSync("articolo.json",JSON.stringify(res,null,2));
 
 }
 

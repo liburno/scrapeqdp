@@ -26,7 +26,7 @@ init();
 
 async function main() {
     var $=cheerio.load(fs.readFileSync("main.html"))
-    var xx=$('article a');
+    var xx=$('a');
     
     var cat=JSON.parse(fs.readFileSync('cats.json'));
     var art={};
@@ -36,8 +36,10 @@ async function main() {
         var a = x.attr('href')
         if (a.startsWith(url)) {
             a = a.substr(url.length);
+            
             var rr=/\/[\w-]+(\/)$/gim.exec(a);
             if (rr) {
+                console.log(rr);
                 var ini=a.substr(0,rr.index)
                 if (cat[ini]) {
                     if (!art[a]) {

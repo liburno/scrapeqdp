@@ -18,7 +18,8 @@ const { Reset, Bold, Reverse, Red, Green, Yellow, Blue, Magenta, Cyan, White } =
 var arts = {}
 var cats = {}
 var $;
-var tot = [];
+
+
 const mesi = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
 const artexp = /^\/([\w-]+)\/([\w-]+)\/?$/gim
 
